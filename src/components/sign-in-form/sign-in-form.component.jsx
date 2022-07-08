@@ -3,7 +3,7 @@ import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '
 
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
-import './authentication.styles.scss';
+import './sign-in-form.styles.scss';
 
 const defaultFormFields = {
   displayName: '',
