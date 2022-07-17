@@ -5,7 +5,6 @@ import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { UserContext } from '../../contexts/user.context'
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase/firebase.utils';
 
@@ -21,7 +20,6 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
   
-  const { setCurrentUser } = useContext(UserContext);
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -32,7 +30,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const { user }= await signInAuthUserWithEmailAndPassword(
+      signInAuthUserWithEmailAndPassword(
         email,
         password
       );
