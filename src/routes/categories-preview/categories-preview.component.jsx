@@ -5,7 +5,6 @@ import CategoryPreview from "../../components/category-preview/category-preview.
 
 const CategoriesPreview = () => {
   const categoriesMap = useSelector(selectCategoriesMap);
-  console.log('le map: ', categoriesMap)
   return (
     <>
       {Object.keys(categoriesMap).map(title => {
