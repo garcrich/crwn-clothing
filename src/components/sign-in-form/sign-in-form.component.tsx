@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -25,7 +25,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {await signInWithGooglePopup()};
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
@@ -35,7 +35,7 @@ const SignInForm = () => {
       );
       resetFormFields();
     } catch (error) {
-      switch(error.code) {
+      switch((error as any).code) {
         case 'auth/wrong-password':
           alert('incorrect password for email');
           break;
@@ -48,7 +48,7 @@ const SignInForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event:  ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
@@ -58,7 +58,7 @@ const SignInForm = () => {
     <div className='sign-in-container'>
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit}>
         <FormInput
           label='Email'
           type='email'
